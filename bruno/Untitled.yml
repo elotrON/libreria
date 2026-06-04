@@ -1,0 +1,22 @@
+info:
+  name: Untitled
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{url}}/prestamo"
+  body:
+    type: json
+    data: |-
+      {
+        "usuarioId" : "1",
+        "libroId" : "2"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
