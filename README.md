@@ -1,4 +1,12 @@
-# Para aprender JUnit, Mockito, servicios, repositorios y algo de lógica de negocio, haría una biblioteca sencilla pero suficientemente rica para tener casos interesantes.
+# Vamos a una crear una biblioteca sencilla pero suficientemente rica para tener casos interesantes.
+
+## Objetivo:
+Aprender habilidades basicas en 
+  - JUnit
+  - Mockito
+  - servicios
+  - repositorios
+  - Algo de lógica de negocio, haría 
 
 ## Entidades
 ### Libro

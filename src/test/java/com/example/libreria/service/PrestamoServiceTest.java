@@ -13,6 +13,9 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
+
+
+
 @ExtendWith(MockitoExtension.class)
 public class PrestamoServiceTest {
 
@@ -32,8 +35,8 @@ public class PrestamoServiceTest {
     private PrestamoService prestamoService;
 
 //#############################################################################################################
+//    usuario inactivo
 //#############################################################################################################
-
     @Test
     void noDebePrestarLibroSiUsuarioEstaInactivo(){
 
@@ -55,7 +58,9 @@ public class PrestamoServiceTest {
         Assertions.assertEquals("El usuario no esta activo", ex.getMessage());
 
     }
+
 //#############################################################################################################
+//   usuario penalizado
 //#############################################################################################################
     @Test
     void noDebePrestarLibroSiUsuarioEstaPenalizado(){
@@ -86,6 +91,7 @@ public class PrestamoServiceTest {
 
 
 //#############################################################################################################
+//  usuario no existe
 //#############################################################################################################
     @Test
     void noDebePrestarLibroSiUsuarioNoExiste(){
@@ -93,7 +99,11 @@ public class PrestamoServiceTest {
 
 
     }
+
+
+
 //#############################################################################################################
+//  libro no disponible
 //#############################################################################################################
 @Test
 void noDebePrestarLibroSiLibroNoEstaDisponible(){
@@ -119,8 +129,13 @@ void noDebePrestarLibroSiLibroNoEstaDisponible(){
 }
 
 //#############################################################################################################
+//  libro no existe
 //#############################################################################################################
 
+
+//#############################################################################################################
+//
+//#############################################################################################################
     @Test
     void debeCrearPrestamoActivoConFechaPrevista(){
         Prestamo prestamo = new Prestamo();
