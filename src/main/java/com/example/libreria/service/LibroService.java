@@ -9,13 +9,13 @@ public class LibroService {
 
 
 
-    public crearLibro(){}
+    // public crearLibro(){}
 
 
-    public obtenerLibroPorId()
+  //  public obtenerLibroPorId()
 
 
-    public listarLibros()
+    // public listarLibros()
 
 
 
