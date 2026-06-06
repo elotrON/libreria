@@ -1,4 +1,4 @@
-package com.example.libreria.dto;
+package com.example.libreria.prestamo.dto;
 
 
 public class PrestamoRequest {

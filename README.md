@@ -56,7 +56,7 @@ Campos:
 
 Permite:
 
-* Dar de alta libros.
+* Dar de alta libros. Al dar de alta un libro, se considera por defecto que por defecto va a estar activo
 * Consultar libros.
 * Modificar datos de un libro.
 * Dar de baja libros.

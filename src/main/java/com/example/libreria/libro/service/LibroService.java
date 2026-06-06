@@ -1,4 +1,4 @@
-package com.example.libreria.service;
+package com.example.libreria.libro.service;
 
 // todo hacer este service
 
@@ -12,7 +12,7 @@ public class LibroService {
     // public crearLibro(){}
 
 
-  //  public obtenerLibroPorId()
+    // public obtenerLibroPorId()
 
 
     // public listarLibros()

@@ -1,4 +1,4 @@
-package com.example.libreria.entity;
+package com.example.libreria.prestamo.entity;
 
 public enum EstadoPrestamo {
     ACTIVO,

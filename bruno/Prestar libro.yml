@@ -1,5 +1,5 @@
 info:
-  name: Untitled
+  name: Prestar libro
   type: http
   seq: 1
 
@@ -11,7 +11,7 @@ http:
     data: |-
       {
         "usuarioId" : "1",
-        "libroId" : "2"
+        "libroId" : "1"
       }
   auth: inherit
 

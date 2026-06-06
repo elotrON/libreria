@@ -1,13 +1,13 @@
-package com.example.libreria.service;
+package com.example.libreria.prestamo.service;
 
-import com.example.libreria.dto.PrestamoResponse;
-import com.example.libreria.entity.EstadoPrestamo;
-import com.example.libreria.entity.Libro;
-import com.example.libreria.entity.Prestamo;
-import com.example.libreria.entity.Usuario;
-import com.example.libreria.repository.LibroRepository;
-import com.example.libreria.repository.PrestamoRepository;
-import com.example.libreria.repository.UsuarioRepository;
+import com.example.libreria.prestamo.dto.PrestamoResponse;
+import com.example.libreria.prestamo.entity.EstadoPrestamo;
+import com.example.libreria.libro.entity.Libro;
+import com.example.libreria.prestamo.entity.Prestamo;
+import com.example.libreria.prestamo.entity.Usuario;
+import com.example.libreria.libro.repository.LibroRepository;
+import com.example.libreria.prestamo.repository.PrestamoRepository;
+import com.example.libreria.usuario.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

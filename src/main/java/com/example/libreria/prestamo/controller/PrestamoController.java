@@ -1,9 +1,8 @@
-package com.example.libreria.controller;
+package com.example.libreria.prestamo.controller;
 
-import com.example.libreria.dto.PrestamoRequest;
-import com.example.libreria.dto.PrestamoResponse;
-import com.example.libreria.entity.Prestamo;
-import com.example.libreria.service.PrestamoService;
+import com.example.libreria.prestamo.dto.PrestamoRequest;
+import com.example.libreria.prestamo.dto.PrestamoResponse;
+import com.example.libreria.prestamo.service.PrestamoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;

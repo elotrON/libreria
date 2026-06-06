@@ -1,9 +1,9 @@
-package com.example.libreria.dto;
+package com.example.libreria.prestamo.dto;
 
 
-import com.example.libreria.entity.EstadoPrestamo;
-import com.example.libreria.entity.Libro;
-import com.example.libreria.entity.Usuario;
+import com.example.libreria.prestamo.entity.EstadoPrestamo;
+import com.example.libreria.libro.entity.Libro;
+import com.example.libreria.prestamo.entity.Usuario;
 
 import java.time.LocalDate;
 

@@ -1,33 +1,14 @@
-package com.example.libreria.entity;
+package com.example.libreria.libro.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
 
-@Entity
-public class Libro {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class LibroResponse {
+
     private Long id;
-
-    @NotBlank
     private String ISBN;
-
-    @NotBlank
     private String titulo;
-
-    @NotBlank
     private String autor;
-
-    @NotNull
     private Integer anhoPublicacion;
-
-    @NotBlank
     private String categoria;
-
-    @NotNull
     private Boolean estaDisponible;
 
     public Integer getAnhoPublicacion() {

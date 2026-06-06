@@ -1,4 +1,4 @@
-package com.example.libreria.entity;
+package com.example.libreria.prestamo.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
