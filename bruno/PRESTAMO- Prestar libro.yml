@@ -1,5 +1,5 @@
 info:
-  name: Prestar libro
+  name: "PRESTAMO: Prestar libro"
   type: http
   seq: 1
 

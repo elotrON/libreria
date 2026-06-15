@@ -1,4 +1,4 @@
-package com.example.libreria.service;
+package com.example.libreria.prestamo.service;
 
 import com.example.libreria.prestamo.entity.EstadoPrestamo;
 import com.example.libreria.libro.entity.Libro;
@@ -7,7 +7,6 @@ import com.example.libreria.prestamo.entity.Usuario;
 import com.example.libreria.libro.repository.LibroRepository;
 import com.example.libreria.prestamo.repository.PrestamoRepository;
 import com.example.libreria.usuario.repository.UsuarioRepository;
-import com.example.libreria.prestamo.service.PrestamoService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;

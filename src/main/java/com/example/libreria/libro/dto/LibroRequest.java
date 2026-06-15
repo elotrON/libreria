@@ -1,8 +1,5 @@
 package com.example.libreria.libro.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 // Cuando damos de alta un libro, se considera que siempre va a estar disponible
 public class LibroRequest {
 
@@ -50,5 +47,9 @@ public class LibroRequest {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public void set() {
+
     }
 }

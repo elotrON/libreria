@@ -1,0 +1,25 @@
+info:
+  name: "LIBRO: Alta nuevo libro"
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{url}}/libro"
+  body:
+    type: json
+    data: |-
+      {
+          "ISBN" : "9999",
+          "titulo": "El pajaro azul",
+          "autor": "Manrrique",
+          "anhoPublicacion": "2006",
+          "categoria": "suspense"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
