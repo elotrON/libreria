@@ -1,13 +1,10 @@
 package com.example.libreria.usuario.dto;
 
-import java.time.LocalDate;
-
 public class UsuarioRequest {
 
     private String nombre;
     private String apellidos;
     private String email;
-    private LocalDate fechaAlta;
 
     public String getApellidos() {
         return apellidos;
@@ -23,14 +20,6 @@ public class UsuarioRequest {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public LocalDate getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(LocalDate fechaAlta) {
-        this.fechaAlta = fechaAlta;
     }
 
     public String getNombre() {

@@ -1,0 +1,23 @@
+info:
+  name: Crear usuario
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{url}}/usuario"
+  body:
+    type: json
+    data: |-
+      {
+          "nombre" : "Marco Antonio",
+          "apellidos": "Lope de Vega",
+          "email": "menabo@email.net"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

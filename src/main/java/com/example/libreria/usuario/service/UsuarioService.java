@@ -45,6 +45,7 @@ public class UsuarioService {
         usuario.setEstaPenalizado(false);
         usuario.setFechaAlta(LocalDate.now());
 
+        usuarioRepository.save(usuario);
         return toResponse(usuario);
     }
 
