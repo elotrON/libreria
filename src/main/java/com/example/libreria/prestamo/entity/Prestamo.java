@@ -1,6 +1,7 @@
 package com.example.libreria.prestamo.entity;
 
 import com.example.libreria.libro.entity.Libro;
+import com.example.libreria.usuario.entity.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 

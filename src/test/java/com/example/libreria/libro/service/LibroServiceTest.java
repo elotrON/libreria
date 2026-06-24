@@ -1,10 +1,8 @@
 package com.example.libreria.libro.service;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
-import java.util.Random;
 
 import com.example.libreria.libro.dto.LibroResponse;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.example.libreria.libro.dto.LibroRequest;
 import com.example.libreria.libro.entity.Libro;
 import com.example.libreria.libro.repository.LibroRepository;
-import org.springframework.util.Assert;
 
 @ExtendWith(MockitoExtension.class)
 public class LibroServiceTest {
@@ -198,6 +195,9 @@ public class LibroServiceTest {
         Assertions.assertEquals(libroRequest.getAnhoPublicacion(), libroResponse.getAnhoPublicacion());
 
     }
+
+    //TODO: PTE IMPLEMENTAR TEST BORRAR LIBRO
+
 
     private LibroRequest crearLibroRequestValido(){
         LibroRequest libroRequest = new LibroRequest();

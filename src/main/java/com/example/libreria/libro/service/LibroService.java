@@ -5,7 +5,6 @@ import com.example.libreria.libro.repository.LibroRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.aspectj.apache.bcel.classfile.annotation.RuntimeInvisTypeAnnos;
 import org.springframework.stereotype.Service;
 import com.example.libreria.libro.dto.LibroRequest;
 import com.example.libreria.libro.dto.LibroResponse;
@@ -65,6 +64,11 @@ public class LibroService {
 
         return toResponse(libro);
     }
+//######################################################################
+//  BORRAR LIBRO
+//######################################################################
+
+    // todo pte implementar borrar libro
 
 
 //######################################################################

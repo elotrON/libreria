@@ -3,7 +3,7 @@ package com.example.libreria.prestamo.service;
 import com.example.libreria.prestamo.entity.EstadoPrestamo;
 import com.example.libreria.libro.entity.Libro;
 import com.example.libreria.prestamo.entity.Prestamo;
-import com.example.libreria.prestamo.entity.Usuario;
+import com.example.libreria.usuario.entity.Usuario;
 import com.example.libreria.libro.repository.LibroRepository;
 import com.example.libreria.prestamo.repository.PrestamoRepository;
 import com.example.libreria.usuario.repository.UsuarioRepository;
@@ -53,7 +53,8 @@ public class PrestamoServiceTest {
         pepe.setEstaActivo(false);
         pepe.setEstaPenalizado(false);
 
-        // simula una respuesta. Cuando se pregunte por el usuario 'usuarioId' se devuelve el usuario falso 'usuario'
+        // simula una respuesta.
+        // Cuando se pregunte por el usuario 'usuarioId' devuelve el usuario falso 'usuario'
         when(usuarioRepository.findById(usuarioId)).thenReturn(Optional.of(pepe));
 
         // intenta crear el prestamo

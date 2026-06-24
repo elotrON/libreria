@@ -4,7 +4,7 @@ import com.example.libreria.prestamo.dto.PrestamoResponse;
 import com.example.libreria.prestamo.entity.EstadoPrestamo;
 import com.example.libreria.libro.entity.Libro;
 import com.example.libreria.prestamo.entity.Prestamo;
-import com.example.libreria.prestamo.entity.Usuario;
+import com.example.libreria.usuario.entity.Usuario;
 import com.example.libreria.libro.repository.LibroRepository;
 import com.example.libreria.prestamo.repository.PrestamoRepository;
 import com.example.libreria.usuario.repository.UsuarioRepository;

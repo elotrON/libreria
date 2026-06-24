@@ -3,7 +3,7 @@ package com.example.libreria.prestamo.dto;
 
 import com.example.libreria.prestamo.entity.EstadoPrestamo;
 import com.example.libreria.libro.entity.Libro;
-import com.example.libreria.prestamo.entity.Usuario;
+import com.example.libreria.usuario.entity.Usuario;
 
 import java.time.LocalDate;
 
