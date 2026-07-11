@@ -9,6 +9,7 @@ import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
@@ -22,13 +23,13 @@ public class UsuarioServiceTest {
     private UsuarioService usuarioService;
 
 
-    //#######################################
+    // -------------------------------
     // NOMBRE
-    //#######################################
+    // -------------------------------
     @Test
     void noCrearUsuarioSinNombre(){
 
-        UsuarioRequest usuarioRequest = crearUsuarioValido();
+        UsuarioRequest usuarioRequest = crearUsuarioRequestValido();
         usuarioRequest.setNombre(null);
 
         RuntimeException ex;
@@ -39,19 +40,19 @@ public class UsuarioServiceTest {
 
     @Test
     void noCrearUsuarioConNombreBlanco(){
-        UsuarioRequest usuarioRequest = crearUsuarioValido();
+        UsuarioRequest usuarioRequest = crearUsuarioRequestValido();
         usuarioRequest.setNombre("  ");
 
         RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () -> usuarioService.crearUsuario(usuarioRequest));
         Assertions.assertEquals("Falta nombre de usuario", ex.getMessage());
     }
 
-    //#######################################
+    // -------------------------------
     // APELLIDOS
-    //#######################################
+    // -------------------------------
     @Test
     void noCrearUsuarioSinApellidos(){
-        UsuarioRequest usuarioRequest = crearUsuarioValido();
+        UsuarioRequest usuarioRequest = crearUsuarioRequestValido();
         usuarioRequest.setApellidos(null);
 
         RuntimeException e = Assertions.assertThrows(RuntimeException.class, () -> usuarioService.crearUsuario(usuarioRequest));
@@ -60,7 +61,7 @@ public class UsuarioServiceTest {
 
     @Test
     void noCrearUsuariosConApellidosEnBlanco(){
-        UsuarioRequest usuarioRequest = crearUsuarioValido();
+        UsuarioRequest usuarioRequest = crearUsuarioRequestValido();
         usuarioRequest.setApellidos("   ");
 
         RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () -> usuarioService.crearUsuario(usuarioRequest));
@@ -68,12 +69,12 @@ public class UsuarioServiceTest {
     }
 
 
-    //#######################################
+    // -------------------------------
     // EMAIL
-    //#######################################
+    // -------------------------------
     @Test
     void noCrearUsuarioSinEmail(){
-        UsuarioRequest usuarioRequest = crearUsuarioValido();
+        UsuarioRequest usuarioRequest = crearUsuarioRequestValido();
         usuarioRequest.setEmail(null);
 
         RuntimeException ex = Assertions.assertThrows(RuntimeException.class, ()-> usuarioService.crearUsuario(usuarioRequest));
@@ -82,7 +83,7 @@ public class UsuarioServiceTest {
 
     @Test
     void noCrearUsuarioConEmailEnBlanco(){
-        UsuarioRequest usuarioRequest = crearUsuarioValido();
+        UsuarioRequest usuarioRequest = crearUsuarioRequestValido();
         usuarioRequest.setEmail(" ");
 
         RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () -> usuarioService.crearUsuario(usuarioRequest));
@@ -97,7 +98,7 @@ public class UsuarioServiceTest {
         usuarioExistente.setId(1L);
         usuarioExistente.setEmail("pepe@pepe.com");
 
-        UsuarioRequest nuevoUsuario = crearUsuarioValido();
+        UsuarioRequest nuevoUsuario = crearUsuarioRequestValido();
         nuevoUsuario.setEmail("pepe@pepe.com");
 
         when(usuarioRepository.findAll()).thenReturn(List.of(usuarioExistente));
@@ -107,13 +108,15 @@ public class UsuarioServiceTest {
     }
 
 
-    //#######################################
+
+    // -------------------------------
     // DATOS VALIDOS
-    //#######################################
+    // -------------------------------
+
     @Test
     void crearUsuarioConDatosValidos(){
 
-        UsuarioRequest usuarioRequest = crearUsuarioValido();
+        UsuarioRequest usuarioRequest = crearUsuarioRequestValido();
         UsuarioResponse usuarioResponse = usuarioService.crearUsuario(usuarioRequest);
 
         Assertions.assertEquals(usuarioResponse.getNombre(),usuarioRequest.getNombre());
@@ -123,13 +126,53 @@ public class UsuarioServiceTest {
         Assertions.assertFalse(usuarioResponse.getEstaPenalizado());
     }
 
-    private UsuarioRequest crearUsuarioValido(){
+    private UsuarioRequest crearUsuarioRequestValido(){
         UsuarioRequest usuarioRequest = new UsuarioRequest();
         
         usuarioRequest.setNombre("Pepe Juan");
         usuarioRequest.setApellidos("Garcia Vaquero");
-        usuarioRequest.setEmail("pepe@juan.com");
+        usuarioRequest.setEmail("pjgarcia@example.com");
 
         return usuarioRequest;
     }
+
+
+    private Usuario crearUsuarioValido(){
+        Usuario usuario = new Usuario();
+
+        usuario.setId(8L);
+        usuario.setNombre("Antonio Jose");
+        usuario.setApellidos("Navarro Navarrete");
+        usuario.setEmail("ajnavarro@example.com");
+
+        return usuario;
+    }
+
+    //#######################################
+    //  TEST DE <BUSCAR USUARIO POR ID>
+    //#######################################
+    @Test
+    void devuelveUsuarioSiExiste(){
+
+        // given
+        Long idUsuario = 3L;
+        Usuario usuario = crearUsuarioValido();
+        usuario.setId(idUsuario);
+
+        when(usuarioRepository.findById(idUsuario)).thenReturn(Optional.of(usuario));
+
+        // when
+        UsuarioResponse usuarioResponse =  usuarioService.obtenerUsuario(idUsuario);
+
+        // then
+        Assertions.assertEquals(3L, usuarioResponse.getId());
+        Assertions.assertEquals( "Antonio Jose", usuarioResponse.getNombre());
+    }
+
+    @Test
+    void lanzaExcepcionSiUsuarioNoExiste(){
+        RuntimeException ex = Assertions.assertThrows(RuntimeException.class, () -> usuarioService.obtenerUsuario(3L));
+        Assertions.assertEquals("Usuario no encontrado", ex.getMessage());
+    }
+
 }

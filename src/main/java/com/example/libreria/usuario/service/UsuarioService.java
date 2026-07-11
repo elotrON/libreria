@@ -6,6 +6,7 @@ import com.example.libreria.usuario.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,8 +59,14 @@ public class UsuarioService {
     }
 
 
-    public boolean comprobarSiExisteUsuario(String email){
 
+    public UsuarioResponse obtenerUsuario(Long id){
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return toResponse(usuario);
+    }
+
+
+    public boolean comprobarSiExisteUsuario(String email){
         boolean existeUsuario = false;
         for(Usuario u : usuarioRepository.findAll()){
             if(u.getEmail().equals(email))
@@ -68,10 +75,56 @@ public class UsuarioService {
         return existeUsuario;
     }
 
+    // todo: hacer tests
+    public UsuarioResponse borrarUsuario(Long id){
+        Usuario usuario;
+        usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado") );
+        usuarioRepository.deleteById(usuario.getId());
 
-    // todo: Obtener usuario por id
-    // todo: Actualizar usuario
-    // todo: borrar usuario
+        return toResponse(usuario);
+    }
+
+    // todo: hacer tests
+    public UsuarioResponse actualizarUsuario(Long id, UsuarioRequest usuarioRequest){
+        UsuarioResponse usuarioResponse;
+
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow( ()-> new RuntimeException("Usuario no encontrado"));
+
+        if(usuarioRequest.getNombre() != null)
+            usuario.setNombre(usuarioRequest.getNombre());
+
+        if(usuarioRequest.getApellidos() != null)
+            usuario.setApellidos(usuarioRequest.getApellidos());
+
+        if(usuarioRequest.getEmail() != null)
+            usuario.setEmail(usuarioRequest.getEmail());
+
+        usuario.setEstaPenalizado(false);
+        usuario.setEstaActivo(true);
+        usuario.setFechaAlta(LocalDate.now());
+
+        usuarioRepository.save(usuario);
+        return toResponse(usuario);
+    }
+
+
+    public UsuarioResponse actualizarParcialusuario(Long idUsuario, UsuarioRequest usuarioRequest){
+
+        Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(()-> new RuntimeException("Usuario no encontrado"));
+
+        if(usuarioRequest.getEmail() != null)
+            usuario.setEmail(usuarioRequest.getEmail());
+        if (usuarioRequest.getApellidos() != null)
+            usuario.setApellidos(usuarioRequest.getApellidos());
+        if(usuarioRequest.getNombre() != null)
+            usuario.setNombre(usuarioRequest.getNombre());
+
+        System.out.println(usuarioRequest.getNombre());
+
+        usuarioRepository.save(usuario);
+        return toResponse(usuario);
+    }
+
     private UsuarioResponse toResponse(Usuario usuario){
 
         UsuarioResponse usuarioResponse = new UsuarioResponse();
