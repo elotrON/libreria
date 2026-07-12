@@ -14,6 +14,7 @@ import java.util.List;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+
     public UsuarioService(UsuarioRepository usuarioRepository)  {
         this.usuarioRepository = usuarioRepository;
     }
@@ -21,8 +22,6 @@ public class UsuarioService {
     public UsuarioResponse crearUsuario(UsuarioRequest usuarioRequest){
         Usuario usuario = new Usuario();
 
-        // El usuario se define por el dni
-        // comprobar si existe un usuario con ese dni
         if(usuarioRequest.getNombre() == null || usuarioRequest.getNombre().isBlank())
             throw new RuntimeException ("Falta nombre de usuario");
 
@@ -58,13 +57,10 @@ public class UsuarioService {
         return listadoUsuarios;
     }
 
-
-
     public UsuarioResponse obtenerUsuario(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         return toResponse(usuario);
     }
-
 
     public boolean comprobarSiExisteUsuario(String email){
         boolean existeUsuario = false;
@@ -75,7 +71,15 @@ public class UsuarioService {
         return existeUsuario;
     }
 
-    // todo: hacer tests
+    public boolean comprobarSiExisteNombreusuario(String nombre){
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        for (Usuario u : usuarios){
+            if(u.getNombre().equals(nombre))
+                return true;
+        }
+        return false;
+    }
+
     public UsuarioResponse borrarUsuario(Long id){
         Usuario usuario;
         usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado") );
@@ -84,20 +88,28 @@ public class UsuarioService {
         return toResponse(usuario);
     }
 
-    // todo: hacer tests
     public UsuarioResponse actualizarUsuario(Long id, UsuarioRequest usuarioRequest){
         UsuarioResponse usuarioResponse;
 
         Usuario usuario = usuarioRepository.findById(id).orElseThrow( ()-> new RuntimeException("Usuario no encontrado"));
+
+        if(usuarioRequest.getEmail() != null) {
+            if (comprobarSiExisteUsuario(usuarioRequest.getEmail())) {
+                throw new RuntimeException("Ya existe este usuario");
+            } else {
+                usuario.setEmail(usuarioRequest.getEmail());
+            }
+        }
+
+        // esta comprobacion se hizo solo para practicar el desarroyo de tests
+        if(comprobarSiExisteNombreusuario(usuarioRequest.getNombre()))
+            throw new RuntimeException("nombre ya existe");
 
         if(usuarioRequest.getNombre() != null)
             usuario.setNombre(usuarioRequest.getNombre());
 
         if(usuarioRequest.getApellidos() != null)
             usuario.setApellidos(usuarioRequest.getApellidos());
-
-        if(usuarioRequest.getEmail() != null)
-            usuario.setEmail(usuarioRequest.getEmail());
 
         usuario.setEstaPenalizado(false);
         usuario.setEstaActivo(true);
@@ -106,7 +118,6 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
         return toResponse(usuario);
     }
-
 
     public UsuarioResponse actualizarParcialusuario(Long idUsuario, UsuarioRequest usuarioRequest){
 

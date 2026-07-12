@@ -12,7 +12,7 @@ http:
       {
           "nombre" : "asdfasf",
           "apellidos": "asdfasdf",
-          "email": "dfafas@example.net"
+          "email": "anuezp@example.net"
       }
   auth: inherit
 
